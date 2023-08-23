@@ -70,12 +70,9 @@ resource "aws_subnet" "private_1" {
     
     availability_zone = "eu-north-1a"
     
-    # Required for eks, 
-    map_public_ip_on_launch = true
-    
     # Tags to define the resource
     tags = {
-        Name                        = "public-eu-north-1a"
+        Name                        = "private-eu-north-1a"
         "kubernetes.io/cluster/eks" = "shared"
         "kubernetes.io/role/elb"    = 1
     }
@@ -92,12 +89,9 @@ resource "aws_subnet" "private_2" {
     
     availability_zone = "eu-north-1b"
     
-    # Required for eks, 
-    map_public_ip_on_launch = true
-    
     # Tags to define the resource
     tags = {
-        Name                        = "public-eu-north-1b"
+        Name                        = "private-eu-north-1b"
         "kubernetes.io/cluster/eks" = "shared"
         "kubernetes.io/role/elb"    = 1
     }
