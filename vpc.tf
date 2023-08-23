@@ -15,3 +15,25 @@ resource "aws_vpc" "main" {
         Name = "main"
     }
 }
+
+resource "aws_subnet" "public_1" {
+    
+    # Id of the VPC where the subnet is created
+    vpc_id = aws_vpc.main.id
+    
+    # CIDR block for the subnet
+    cidr_block = "192.168.0.0/24"
+    
+    availability_zone = "eu-north-1a"
+    
+    # Required for eks, 
+    map_public_ip_on_launch = true
+    
+    # Tags to define the resource
+    tags = {
+        Name                        = "public-eu-north-1a"
+        "kubernetes.io/cluster/eks" = "shared"
+        "kubernetes.io/role/elb"    = 1
+    }
+    
+}
