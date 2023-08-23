@@ -1,6 +1,6 @@
 resource "aws_vpc" "main" {
     # CIDR block for the VPC
-    cidr_block = "10.0.2.0/16"
+    cidr_block = "10.0.0.0/16"
     
     # Instances shared across AWS accounts
     instance_tenancy = "default"
