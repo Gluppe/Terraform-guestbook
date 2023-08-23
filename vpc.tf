@@ -85,7 +85,7 @@ resource "aws_subnet" "private_2" {
     vpc_id = aws_vpc.main.id
     
     # CIDR block for the subnet
-    cidr_block = "10.0.4.0/16"
+    cidr_block = "10.0.4.0/24"
     
     availability_zone = "eu-north-1b"
     
