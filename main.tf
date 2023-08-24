@@ -60,7 +60,7 @@ resource "aws_iam_role" "eks_node_role" {
 # IAM policy attached to the EKS worker node role for necessary permissions.
 resource "aws_iam_role_policy_attachment" "eks_node_policy_attachment" {
     role = aws_iam_role.eks_node_role.name
-    policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
+    policy_arn = ["arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy", "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"]
 }
 
 # The EKS cluster itself.
