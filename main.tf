@@ -22,10 +22,6 @@ resource "aws_iam_role_policy_attachment" "eks_policy_attachment" {
     policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
 }
 
-resource "aws_security_group" "eks_security_group" {
-  vpc_id = aws_vpc.main.id
-}
-
 resource "aws_eks_cluster" "my_cluster" {
     name = "my-cluster"
     role_arn = aws_iam_role.eks_role.arn
@@ -74,6 +70,8 @@ resource "aws_iam_role_policy_attachment" "eks_node_policy_attachment_cni" {
   role       = aws_iam_role.eks_node_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
 }
+
+#security_groups_ids = aws_security_group.eks_worker_nodes_sg.id
 
 # The EKS cluster itself.
 resource "aws_eks_node_group" "my_node_group" {
