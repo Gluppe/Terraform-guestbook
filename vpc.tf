@@ -32,7 +32,7 @@ resource "aws_subnet" "public_1" {
     # Tags to define the resource
     tags = {
         Name                        = "public-eu-north-1a"
-        "kubernetes.io/cluster/eks" = "shared"
+        "kubernetes.io/cluster/my_cluster" = "shared"
         "kubernetes.io/role/elb"    = 1
     }
     
@@ -54,7 +54,7 @@ resource "aws_subnet" "public_2" {
     # Tags to define the resource
     tags = {
         Name                        = "public-eu-north-1b"
-        "kubernetes.io/cluster/eks" = "shared"
+        "kubernetes.io/cluster/my_cluster" = "shared"
         "kubernetes.io/role/elb"    = 1
     }
     
@@ -73,7 +73,7 @@ resource "aws_subnet" "private_1" {
     # Tags to define the resource
     tags = {
         Name                        = "private-eu-north-1a"
-        "kubernetes.io/cluster/eks" = "shared"
+        "kubernetes.io/cluster/my_cluster" = "shared"
         "kubernetes.io/role/elb"    = 1
     }
     
@@ -92,7 +92,7 @@ resource "aws_subnet" "private_2" {
     # Tags to define the resource
     tags = {
         Name                        = "private-eu-north-1b"
-        "kubernetes.io/cluster/eks" = "shared"
+        "kubernetes.io/cluster/my_cluster" = "shared"
         "kubernetes.io/role/elb"    = 1
     }
     
