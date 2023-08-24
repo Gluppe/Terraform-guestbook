@@ -22,10 +22,6 @@ resource "aws_iam_role_policy_attachment" "eks_policy_attachment" {
     policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
 }
 
-resource "aws_security_group" "eks_security_group" {
-  vpc_id = aws_vpc.main.id
-}
-
 resource "aws_eks_cluster" "my_cluster" {
     name = "my-cluster"
     role_arn = aws_iam_role.eks_role.arn
@@ -81,6 +77,7 @@ resource "aws_eks_node_group" "my_node_group" {
     node_group_name = "my-node-group"
     node_role_arn = aws_iam_role.eks_node_role.arn
     subnet_ids = [aws_subnet.private_1.id, aws_subnet.private_2.id]
+    security_groups_ids = aws_security_group.eks_worker_nodes_sg.id
     
     scaling_config {
         desired_size = 2
