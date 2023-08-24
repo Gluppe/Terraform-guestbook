@@ -1,3 +1,22 @@
+# MARTIN ADJUSTED:
+provider "kubernetes" {
+  host                   = data.aws_eks_cluster.eks.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks.certificate_authority[0].data)
+  token                  = data.aws_eks_cluster_auth.eks.token
+}
+
+resource "kubernetes_config_map" "aws-auth" {
+  data = {
+    "mapRoles" = <<EOT
+- groups:
+  - system:bootstrappers
+  - system:nodes
+  rolearn: arn:aws:iam::459978891776:role/eks_node_role
+  username: system:node:{{EC2PrivateDNSName}}
+EOT
+  }
+}
+
 # IAM role assumed by the EKS control panel.
 resource "aws_iam_role" "eks_role" {
     name = "eks_role"
